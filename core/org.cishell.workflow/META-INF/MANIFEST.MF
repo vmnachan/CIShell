@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CIShell WorkFlow
+Bundle-SymbolicName: org.cishell.workflow
+Bundle-Version: 1.0.0
+Bundle-Activator: org.cishell.workflow.Activator
+Import-Package: org.eclipse.update.configurator,
+ org.osgi.framework;version="1.3.0",
+ org.cishell.app.service.scheduler,
+ org.cishell.framework;version="1.0.0",
+ org.cishell.framework.algorithm;version="1.0.0",
+ org.cishell.framework.data,
+ org.cishell.reference.gui.workspace,
+ org.cishell.reference.gui.scheduler
+Export-Package: org.cishell.workflow
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+X-AutoStart: true

@@ -19,6 +19,7 @@
     <module>org.cishell.utility.datastructure</module>
     <module>org.cishell.utility.swt</module>
     <module>org.cishell.utility.dict</module>
+    <module>org.cishell.workflow</module>
   </modules>
   <parent>
   	<groupId>org.cishell</groupId>
