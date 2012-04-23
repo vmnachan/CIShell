@@ -19,8 +19,19 @@ public class Activator implements BundleActivator{
 		workFlow.setRecord(true);
 		System.out.println("Started  - " + workFlow.isRecord());
 		workFlow.setRecord(false);
-		System.out.println("Stoped  - " + workFlow.isRecord());
+		System.out.println("Stopped  - " + workFlow.isRecord());
 		WorkflowListener wfListen = WorkflowListener.getInstance();
+	}
+	
+	protected static SchedulerService getSchedulerService() {
+		ServiceReference serviceReference = context.getServiceReference(SchedulerService.class.getName());
+		SchedulerService manager = null;
+		
+		if (serviceReference != null) {
+			manager = (SchedulerService) context.getService(serviceReference);
+		}
+		
+		return manager;
 	}
 	
 	/**
