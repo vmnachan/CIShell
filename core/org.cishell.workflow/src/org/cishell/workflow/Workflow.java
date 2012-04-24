@@ -1,17 +1,18 @@
 package org.cishell.workflow;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Workflow {
 
 	private static Workflow instance = null;
 	private boolean isRecord;
-	private HashMap<String,String> algorithmMap;
+	private ArrayList<String> algorithmList;
 	
 	protected Workflow() {
 
 		isRecord = false;
-		algorithmMap = new HashMap<String,String>();
+		algorithmList = new ArrayList<String>();
 	}
 
 	public static Workflow getInstance() {
@@ -29,12 +30,19 @@ public class Workflow {
 		this.isRecord = isRecord;
 	}
 
-	public HashMap<String,String> getAlgorithmMap() {
-		return algorithmMap;
+	public ArrayList<String> getAlgorithmList() {
+		return algorithmList;
 	}
 
-	public void setAlgorithmMap(HashMap<String,String> algorithmMap) {
-		this.algorithmMap = algorithmMap;
+	public void setAlgorithmList(ArrayList<String> algorithmList) {
+		this.algorithmList = algorithmList;
 	}
 	
+	public void addToAlgorithmList(String value){
+		this.algorithmList.add(value);
+	}
+	
+	public void emptyAlgorithmList(){
+		this.algorithmList.clear();
+	}
 }

@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import org.cishell.app.service.scheduler.SchedulerListener;
 import org.cishell.framework.algorithm.Algorithm;
-import org.cishell.framework.algorithm.AlgorithmProperty;
 import org.cishell.framework.data.Data;
 import org.cishell.reference.gui.scheduler.SchedulerContentModel;
 import org.osgi.framework.ServiceReference;
@@ -38,18 +37,23 @@ public class WorkflowListener implements SchedulerListener {
 	}
 
 	public void algorithmStarted(Algorithm algorithm) {
-		
-		ServiceReference serviceReference = Activator.getSchedulerService().getServiceReference(algorithm);
-		String servicePID = "";
-		if (serviceReference != null) {
-			servicePID = (String) serviceReference.getProperty("service.pid");
-			System.out.println("PID - "+ servicePID );
-		}
-		System.out.println("Algo Started - " + algorithm.getClass().getName());
+
 	}
 
 	public void algorithmFinished(Algorithm algorithm, Data[] createdData) {
-
+		Workflow workFlow = Workflow.getInstance();
+		if (workFlow.isRecord()) {
+			ServiceReference serviceReference = Activator.getSchedulerService()
+					.getServiceReference(algorithm);
+			String servicePID = "";
+			if (serviceReference != null) {
+				servicePID = (String) serviceReference
+						.getProperty("service.pid");
+				if(!servicePID.contains("StartRecord") && !servicePID.contains("StopRecord")){
+					workFlow.addToAlgorithmList(servicePID);
+				}
+			}
+		}
 	}
 
 	public void algorithmError(Algorithm algorithm, Throwable error) {

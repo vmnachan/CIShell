@@ -15,11 +15,6 @@ public class Activator implements BundleActivator{
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
 		Workflow workFlow = new  Workflow();
-		System.out.println("Created  - " + workFlow.isRecord());
-		workFlow.setRecord(true);
-		System.out.println("Started  - " + workFlow.isRecord());
-		workFlow.setRecord(false);
-		System.out.println("Stopped  - " + workFlow.isRecord());
 		WorkflowListener wfListen = WorkflowListener.getInstance();
 	}
 	
