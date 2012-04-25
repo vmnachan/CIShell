@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="org.cishell.reference.gui.persistence.testAlgorithm.TestAlgorithm.component" immediate="false">
+	<implementation class="org.cishell.reference.gui.persistence.testAlgorithm.TestAlgorithmFactory"/>
+	<properties entry="OSGI-INF/algorithm.properties"/>
+	
+	<service>
+		<provide interface=
+			"org.cishell.framework.algorithm.AlgorithmFactory"/>
+	</service>
+</component>

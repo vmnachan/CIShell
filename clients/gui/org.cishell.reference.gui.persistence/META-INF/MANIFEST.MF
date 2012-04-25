@@ -10,6 +10,7 @@ Import-Package: org.cishell.app.service.datamanager,
  org.cishell.framework;version="1.0.0",
  org.cishell.framework.algorithm;version="1.0.0",
  org.cishell.framework.data;version="1.0.0",
+ org.cishell.reference.app.service.filesaver,
  org.cishell.reference.gui.guibuilder.swt,
  org.cishell.reference.gui.guibuilder.swt.builder,
  org.cishell.reference.gui.guibuilder.swt.builder.components,
@@ -20,16 +21,16 @@ Import-Package: org.cishell.app.service.datamanager,
  org.cishell.service.guibuilder;version="1.0.0",
  org.cishell.utilities,
  org.cishell.utilities.dictionary,
+ org.cishell.workflow,
  org.osgi.framework;version="1.3.0",
  org.osgi.service.cm;version="1.2.0",
  org.osgi.service.component;version="1.0.0",
  org.osgi.service.log;version="1.3.0",
  org.osgi.service.metatype;version="1.1.0",
  org.osgi.service.prefs;version="1.1.0",
- org.cishell.reference.app.service.filesaver,
- org.cishell.workflow
+ prefuse.data
 X-AutoStart: true
-Service-Component: OSGI-INF/load.xml, OSGI-INF/save.xml, OSGI-INF/view.xml, OSGI-INF/viewwith.xml, OSGI-INF/startrecord.xml, OSGI-INF/stoprecord.xml
+Service-Component: OSGI-INF/load.xml, OSGI-INF/save.xml, OSGI-INF/view.xml, OSGI-INF/viewwith.xml, OSGI-INF/startrecord.xml, OSGI-INF/stoprecord.xml, OSGI-INF/algorithm.xml
 Require-Bundle: org.eclipse.swt,
  org.eclipse.ui
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
