@@ -8,10 +8,22 @@
 		 description=" ">
 		  <AD name="View With" id="viewWith" type="String" default=""/>
 	</OCD>
+	<OCD name="Start record" id="org.cishell.reference.gui.persistence.workflow.StartRecord.OCD"
+		 description=" ">
+	</OCD>
+	<OCD name="Stop record" id="org.cishell.reference.gui.persistence.workflow.StopRecord.OCD"
+		 description=" ">
+	</OCD>
 	<Designate pid="org.cishell.reference.gui.persistence.load.FileLoadAlgorithm.prefs.local">
 		<Object ocdref="org.cishell.reference.gui.persistence.load.FileLoadAlgorithm.prefs.local.OCD" />
 	</Designate>
 	<Designate pid="org.cishell.reference.gui.persistence.viewwith.FileViewWith">
 		<Object ocdref="org.cishell.reference.gui.persistence.viewwith.FileViewWith.OCD" />
+	</Designate>
+	<Designate pid="org.cishell.reference.gui.persistence.workflow.StartRecord">
+		<Object ocdref="org.cishell.reference.gui.persistence.workflow.StartRecord.OCD" />
+	</Designate>
+	<Designate pid="org.cishell.reference.gui.persistence.workflow.StopRecord">
+		<Object ocdref="org.cishell.reference.gui.persistence.workflow.StopRecord.OCD" />
 	</Designate>
 </metatype:MetaData>
