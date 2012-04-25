@@ -41,7 +41,7 @@ public class StopRecord implements Algorithm {
 			FileSaverServiceImpl fileSaver = new FileSaverServiceImpl();
 			File saveFile = fileSaver.promptForTargetFile("workflow", "xml");
 			String savePath = saveFile.getAbsolutePath();
-			
+
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -55,8 +55,10 @@ public class StopRecord implements Algorithm {
 					.getAlgorithmList();
 			for (String algorithm : algoList) {
 				// algorithm elements
-				Element algo = doc.createElement("Algorithm");
-				algo.appendChild(doc.createTextNode(algorithm));
+				Element algo = doc.createElement("algorithm");
+				Element pid = doc.createElement("pid");
+				pid.appendChild(doc.createTextNode(algorithm));
+				algo.appendChild(pid);
 				rootElement.appendChild(algo);
 			}
 			// write the content into xml file
@@ -64,15 +66,13 @@ public class StopRecord implements Algorithm {
 					.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			
+
 			StreamResult result = new StreamResult(saveFile);
 			transformer.transform(source, result);
 
-			System.out.println("File saved!");
-			
 			Workflow.getInstance().emptyAlgorithmList();
 			Workflow.getInstance().setRecord(false);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
