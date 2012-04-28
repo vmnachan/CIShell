@@ -6,35 +6,65 @@ import java.util.Dictionary;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.cishell.app.service.filesaver.FileSaveException;
 import org.cishell.framework.CIShellContext;
 import org.cishell.framework.algorithm.Algorithm;
 import org.cishell.framework.algorithm.AlgorithmExecutionException;
 import org.cishell.framework.data.Data;
 import org.cishell.reference.app.service.filesaver.FileSaverServiceImpl;
 import org.cishell.workflow.Workflow;
-import org.w3c.dom.Attr;
+import org.osgi.service.log.LogService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * The Class StopRecord.
+ * 
+ * Algorithm that saves all the algorithms run in the record mode into a file
+ * specified by the user, finally set the record mode to false and empties the
+ * workflow algorithm list.
+ * 
+ * Author: P632
+ * 
+ */
 public class StopRecord implements Algorithm {
 
 	private Data[] dataToView;
 	private Dictionary parameters;
 	private CIShellContext ciShellContext;
-	private String input;
+	private LogService logger;
 
+	/**
+	 * Instantiates a new stop record.
+	 * 
+	 * @param data
+	 *            the data
+	 * @param parameters
+	 *            the parameters
+	 * @param context
+	 *            the context
+	 */
 	public StopRecord(Data[] data, Dictionary parameters, CIShellContext context) {
 		this.dataToView = data;
 		this.parameters = parameters;
 		this.ciShellContext = context;
+		this.logger = (LogService) context.getService(LogService.class
+				.getName());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.cishell.framework.algorithm.Algorithm#execute()
+	 */
 	public Data[] execute() throws AlgorithmExecutionException {
 
 		try {
@@ -73,8 +103,18 @@ public class StopRecord implements Algorithm {
 			Workflow.getInstance().emptyAlgorithmList();
 			Workflow.getInstance().setRecord(false);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			String logMessage = "Parser error while writing to file.";
+			this.logger.log(LogService.LOG_ERROR, logMessage);
+		} catch (TransformerConfigurationException e) {
+			String logMessage = "Transformer configuration error while writing to file";
+			this.logger.log(LogService.LOG_ERROR, logMessage);
+		} catch (TransformerException e) {
+			String logMessage = "Transformer error while writing to file";
+			this.logger.log(LogService.LOG_ERROR, logMessage);
+		} catch (FileSaveException e) {
+			String logMessage = "Unable to save the file";
+			this.logger.log(LogService.LOG_ERROR, logMessage);
 		}
 		return new Data[0];
 	}
