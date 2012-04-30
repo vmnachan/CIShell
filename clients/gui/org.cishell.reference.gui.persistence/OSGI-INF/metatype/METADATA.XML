@@ -14,9 +14,12 @@
 	<OCD name="Stop record" id="org.cishell.reference.gui.persistence.workflow.StopRecord.OCD"
 		 description=" ">
 	</OCD>
-		<OCD name="Test Algorithm" id="org.cishell.reference.gui.persistence.testAlgorithm.TestAlgorithm.OCD"
+	<OCD name="Test Algorithm" id="org.cishell.reference.gui.persistence.testAlgorithm.TestAlgorithm.OCD"
 		 description="Testing algorithm... ">
 	</OCD>
+	<OCD name="Test Algorithm Generator" id="org.cishell.reference.gui.persistence.testAlgorithmGenerator.TestAlgorithmGenerator.OCD"
+		 description="Testing algorithm... ">
+	</OCD>	
 	<OCD name="Play workflow" id="org.cishell.reference.gui.persistence.workflow.PlayWorkflow.OCD"
 		 description=" ">
 	</OCD>
@@ -32,8 +35,11 @@
 	<Designate pid="org.cishell.reference.gui.persistence.workflow.StopRecord">
 		<Object ocdref="org.cishell.reference.gui.persistence.workflow.StopRecord.OCD" />
 	</Designate>
-		<Designate pid="org.cishell.reference.gui.persistence.testAlgorithm.TestAlgorithm">
+	<Designate pid="org.cishell.reference.gui.persistence.testAlgorithm.TestAlgorithm">
 		<Object ocdref="org.cishell.reference.gui.persistence.testAlgorithm.TestAlgorithm.OCD" />
+	</Designate>
+	<Designate pid="org.cishell.reference.gui.persistence.testAlgorithmGenerator.TestAlgorithmGenerator">
+		<Object ocdref="org.cishell.reference.gui.persistence.testAlgorithmGenerator.TestAlgorithmGenerator.OCD" />
 	</Designate>
 	<Designate pid="org.cishell.reference.gui.persistence.workflow.PlayWorkflow">
 		<Object ocdref="org.cishell.reference.gui.persistence.workflow.PlayWorkflow.OCD" />
